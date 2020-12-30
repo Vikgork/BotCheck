@@ -31,5 +31,5 @@ jobs:
       with:
         app-name: 'botchecker'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_262b907c1ce04a8faa1fe7558762ca1e }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_d3d257827ad444e1bcc353fc2615610c }}
         package: ${{env.DOTNET_ROOT}}/myapp 
