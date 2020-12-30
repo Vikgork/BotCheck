@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Chrome;
 
 namespace BotCheck
@@ -14,17 +15,16 @@ namespace BotCheck
     {
         
         string url = "https://tu-koe.dtek-kem.info";
-        ChromeDriver drive;
-        
+        //ChromeDriver drive;
+        EdgeDriver drive;
         public DtekParser()
         {
-            ChromeDriverService service = ChromeDriverService.CreateDefaultService();
+            var service = EdgeDriverService.CreateDefaultService();
             service.HideCommandPromptWindow = true;
 
-            var options = new ChromeOptions();
-            options.AddArgument("--window-position=-32000,-32000");
-
-            drive = new ChromeDriver(service,options);
+            var options = new EdgeOptions();
+            drive = new EdgeDriver(service,options);
+            drive.Manage().Window.Minimize();
             drive.Navigate().GoToUrl(url);
 
         }
