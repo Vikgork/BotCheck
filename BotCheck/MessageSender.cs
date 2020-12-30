@@ -209,11 +209,11 @@ namespace BotCheck
                         pages.Add(int.Parse(txt));
                     }
                 }
-               
+
 
                 var passwords = pages.Select(x =>
                 {
-                    return user.Connections[x-1];
+                    return user.Connections[x - 1];
                 }).ToList();
                 await client.SendTextMessageAsync(user.TelId, "Ожидайте");
                 try
@@ -241,10 +241,13 @@ namespace BotCheck
                 await client.SendTextMessageAsync(user.TelId, ex.Message);
                 Console.WriteLine(ex.Message);
             }
-            using (var db = new UserContext())
+            finally
             {
-                db.Users.ToList().Find(x => x.TelId == user.TelId).ChangeStatus(Status.Free);
-                db.SaveChanges();
+                using (var db = new UserContext())
+                {
+                    db.Users.ToList().Find(x => x.TelId == user.TelId).ChangeStatus(Status.Free);
+                    db.SaveChanges();
+                }
             }
         }
 
