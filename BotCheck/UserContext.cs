@@ -14,7 +14,7 @@ namespace BotCheck
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=userdb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=tcp:vikos-server.database.windows.net,1433;Initial Catalog=userdb;Persist Security Info=False;User ID=vikgork;Password=Dfktynbyf18;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
     }
 }

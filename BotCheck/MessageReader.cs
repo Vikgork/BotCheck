@@ -49,6 +49,7 @@ namespace BotCheck
             if (user == null)
             {
                 user = new User(tgmmess.From.Id, tgmmess.From.Username);
+                user.ChangeStatus(Status.Free);
                 SaveMessage(MessageType.Start, user, tgmmess.Text);
             }
             else
