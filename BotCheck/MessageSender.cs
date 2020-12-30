@@ -143,13 +143,14 @@ namespace BotCheck
                     db.Users.ToList().Find(x => x.TelId == user.TelId).ChangeStatus(Status.Free);
                     db.SaveChanges();
                 }
+                await client.SendTextMessageAsync(user.TelId, "Успешно добавлено");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"{DateTime.Now}|{ex.Message}|{message.Text}|{user.TelId}");
-                await client.SendTextMessageAsync(user.TelId, "Произошла ошибка, попробуйте ещё раз");
+                await client.SendTextMessageAsync(user.TelId, ex.Message);
             }
-            await client.SendTextMessageAsync(user.TelId, "Успешно добавлено");
+            
         }
         private async void AddTo()
         {
@@ -230,12 +231,14 @@ namespace BotCheck
                 catch (Exception ex)
                 {
                     Console.Beep();
+                    await client.SendTextMessageAsync(user.TelId, ex.Message);
                     Console.WriteLine(ex.Message);
                 }
 
             }
             catch (Exception ex)
             {
+                await client.SendTextMessageAsync(user.TelId, ex.Message);
                 Console.WriteLine(ex.Message);
             }
             using (var db = new UserContext())
